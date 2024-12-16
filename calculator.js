@@ -15,11 +15,23 @@ function subtracted(a, b) {
 }
 
 function multiplied(a, b) {
-    return Number(a) * Number(b);
+    res = Number(a) * Number(b);
+    if (Number.isInteger(res)) {
+        return res;
+    }
+    else {
+        return res.toFixed(6);
+    }
 }
 
 function divided(a, b) {
-    return Number(a) / Number(b);
+    res =  Number(a) / Number(b);
+    if (Number.isInteger(res)) {
+        return res;
+    }
+    else {
+        return res.toFixed(6);
+    }
 }
 
 buttons.forEach(button => {
@@ -86,6 +98,41 @@ buttons.forEach(button => {
                 else if (operator === 'divide') {
                     oper = '÷';
                     display.textContent = display.textContent + ' ÷';
+                }
+            }
+            else {
+                if (oper === '+') {
+                    num1 = added(num1, num2);
+                    num2 = 0, oper = null;
+                }
+                else if (oper === '-') {
+                    num1 = subtracted(num1, num2);
+                    num2 = 0; oper = null;
+                }
+                else if (oper === 'x') {
+                    num1 = multiplied(num1, num2);
+                    num2 = 0, oper = null;
+                }
+                else if (oper === '÷') {
+                    num1 = divided(num1, num2);
+                    num2 = 0, oper = null;
+                }
+
+                if (operator === 'add') {
+                    oper = '+';
+                    display.textContent = `${num1} ${oper}`;
+                }
+                else if (operator === 'subtract') {
+                    oper = '-';
+                    display.textContent = `${num1} ${oper}`;
+                }
+                else if (operator === 'multiply') {
+                    oper = 'x';
+                    display.textContent = `${num1} ${oper}`;
+                }
+                else if (operator === 'divide') {
+                    oper = '÷';
+                    display.textContent = `${num1} ${oper}`;
                 }
             }
         }
